@@ -1,0 +1,42 @@
+
+#logo {
+  margin-top: clamp(2rem, 10vw, 10rem);
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  max-width: 1000px;
+}
+.tCenter{
+    text-align:center;
+}
+input {
+  font-size: clamp(14px, 1.4vw, 2rem);
+	margin-top: 1rem;
+  padding: .4rem;
+  padding-bottom: 0;
+  color: #fffa;
+  border: none;
+  border-bottom: 3px solid #ffffff01;
+  background: #fff3;
+  transition: box-shadow 250ms ease-in, border-bottom 250ms ease-in;
+}
+input[name="q"] {
+  border-bottom: 3px solid #fff3;
+  background: #0000;
+}
+input:focus {
+  outline: none;
+  border: none;
+  border-bottom: 3px solid #ffffff01;
+  box-shadow: 0 .15rem 0 #e6cb7c,
+              0 .25rem 0 #fc0101,
+              0 .35rem 0 #0000ff;
+}
+footer {
+    position : absolute;
+    bottom : 0;
+    line-height: 2.6rem;
+}

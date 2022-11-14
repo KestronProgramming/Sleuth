@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <title><%= query %> - Kestrogle</title>
+    <link rel='stylesheet' href='all.css'>
+    <link rel='stylesheet' href='search.css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="search" type="application/opensearchdescription+xml" title="Kestrogle" href="opensearch.xml" />
+ 	</head>
+    <body data-using-sidebar="<%= useSidebar %>">
+        <header class="header">
+            <a href="/"><image src='kestrogle.png' id='logo' /></a><br>
+            <form class='tCenter' action='/search' autocomplete='off'>
+                <input placeholder='Search...' value="<%= query %>" id='q' name='q'> <input type="submit" value="Search">
+            </form>
+						<a href='images?q=<%= query %>'>Images</a>
+        </header>
+        <main class="results">
+            <% if (useLoadEngines == "true" || useLoadEngines == "yes") { %>
+            <div id="googleResults">
+            <h1 class='tCenter'>Google Results</h1>
+            <span id='googleLoading' class='center'>Loading...</span>
+            </div>
+            <div id="bingResults">
+            <h1 class='tCenter'>Bing Results</h1>
+            <span id='bingLoading' class='center'>Loading...</span>
+            </div>
+            <div id="ddgResults">
+            <h1 class='tCenter'>DuckDuckGo Results</h1>
+            <div id='ddgLoading' class='center'>Loading...</div>
+            </div>
+            <% } else if(useCombinedResults == "true" || useCombinedResults == "yes") { %>
+                <% for (let i = 0; i < results.length; i++) { %>
+                    <article class="result">
+                        <a href="<%= results[i].url %>">
+                            <div class="url"><%= results[i].url %></div>
+                            <h2 class="title"><img src="<%= results[i].favi %>" width='2%'  loading='lazy'> <%= results[i].title %></h2>
+                        </a>
+                        <p class="description"><%- results[i].description %></p>
+                        <i><%- results[i].engineIndecator %> </i>
+                    </article>
+                    <hr>
+                    <% } %>
+            <% } else { %>
+            <h1>Google Results</h1>
+                <% for (let i = 0; i < googleResults.length; i++) { %>
+                <article class="result">
+                    <a href="<%= googleResults[i].url %>">
+                        <div class="url"><%= googleResults[i].url.slice(7) %></div>
+                        <h2 class="title"><img src="<%= results[i].favi %>" width='2%'  loading='lazy'> <%= googleResults[i].title %></h2>
+                    </a>
+                    <p class="description"><%- googleResults[i].description %></p>
+                </article>
+                <hr>
+                <% } %>
+            <h1>Bing Results</h1>
+                <% for (let i = 0; i < bingResults.length; i++) { %>
+                <article class="result">
+                    <a href="<%= bingResults[i].url %>">
+                        <div class="url"><%= bingResults[i].url %></div>
+                        <h2 class="title"><img src="<%= results[i].favi %>" width='2%'  loading='lazy'> <%= bingResults[i].title %></h2>
+                    </a>
+                    <p class="description"><%- bingResults[i].description %></p>
+                </article>
+                <hr>
+                <% } %>
+            <h1>DuckDuckGo Results</h1>
+                <% for (let i = 0; i < ddgResults.length; i++) { %>
+                <article class="result">
+                    <a href="<%= ddgResults[i].url %>">
+                        <div class="url"><%= ddgResults[i].url %></div>
+                        <h2 class="title"><img src="<%= results[i].favi %>" width='2%' loading='lazy'> <%= ddgResults[i].title %></h2>
+                    </a>
+                    <p class="description"><%- ddgResults[i].description %></p>
+                </article>
+                <hr>
+                <% } %>
+            <% } %>
+        </main>
+        <script src='footer.js'></script>
+        <% if (useLoadEngines == "true" || useLoadEngines == "yes") { %>
+        <script src='loadEngines.js'></script>
+        <% } %>
+   </body>
+</html>

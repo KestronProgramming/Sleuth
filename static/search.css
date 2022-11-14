@@ -1,0 +1,46 @@
+body{
+    background-color:black;
+    color:white;
+}
+.seperator {
+    font-size: .6em;
+    color: #fff4;
+}
+#logo{
+    float:left;
+    padding: 1rem;
+}
+.result a {
+    text-decoration: none;
+}
+.title {
+    margin: 0;
+    padding: 0;
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+.url{
+    color:#ccc;
+    word-wrap: break-word;
+    font-size: .8rem;
+    margin: 0;
+    padding: 0;
+}
+.results {
+    margin-top: 3rem;
+    margin-inline: 2rem;
+    padding: 1rem;
+}
+body[data-using-sidebar="no"] .results {
+    width: clamp(45ch, 60vw, 70ch);
+    max-width: 100%;
+    margin-inline: auto;
+}
+hr {
+    color: #fff1;
+    border: solid 1px #fff1;
+    margin-block: 1rem;
+}
+.b_attribution {
+    display: none;
+}

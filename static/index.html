@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <title>Kestrogle</title>
+    <link rel='stylesheet' href='all.css'>
+    <link rel='stylesheet' href='index.css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="search" type="application/opensearchdescription+xml" title="Kestrogle" href="opensearch.xml" />
+		<meta content="Kestrogle" property="og:title" />
+    <meta content="A search engine that keeps you completely private. No more tracking from search engines like Google." property="og:description" />
+    <meta content="https://kestrogle.tk/" property="og:url" />
+    <meta content="https://kestrogle.tk/favicon.ico" property="og:image" />
+    <meta content="#000000" data-react-helmet="true" name="theme-color" />
+	</head>
+	<body>
+		<img id="logo" class="center" src="kestrogle.png"><h6 class='tCenter'>Can be found at kestrogle.tk and kestrogle.kestron.repl.co</h6><br>
+		<form class='tCenter' action='/search' autocomplete='off'>
+			<input placeholder='Search...' id='q' name='q'> <input type="submit" value="Search"><br><br>
+			Safesearch: 
+			<select name='safesearch' onchange="safeExplanation()" id='safesearch'>
+				<option>Safe</option>
+				<option>Moderate</option>
+				<option>Off</option>
+			</select>
+			<h6 id='safeExplain'>Scans every result for keywords we feel should be blocked.</h6>
+		</form>
+		<script src='footer.js'></script>
+		<script>
+			function safeExplanation(){
+				let val=document.getElementById("safesearch").value;
+				let explanation=document.getElementById("safeExplain");
+				switch(val){
+					default:
+						explanation.innerHTML="Quit hacking.";
+					break;
+					case 'Safe':
+						explanation.innerHTML="Scans every result for keywords we feel should be blocked.";
+					break;
+					case 'Moderate':
+						explanation.innerHTML="Only blocks sites we have set up to block.";
+					break;
+					case 'Off':
+						explanation.innerHTML="Nothing is blocked.";
+					break;
+				}
+			}
+		</script>
+		<script src='suggest.js'></script>
+	</body>
+</html>

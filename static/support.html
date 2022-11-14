@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Support Me - Kestrogle</title>
+		<link rel='stylesheet' href='all.css'>
+		<link rel='stylesheet' href='search.css'>
+		<link rel='icon' href='BarioMagGlass.png'>
+	</head>
+	<body>
+		<header class="header">
+				<a href="/"><image src='kestrogle.png' id='logo' /></a><br>
+				<form class='tCenter' action='/search' autocomplete='off'>
+						<input placeholder='Search...' id='q' name='q'> <input type="submit" value="Search">
+				</form>
+		</header><br><br>
+		<h1 class='tCenter'>Support Kestrogle</h1>
+		<h2 class='tCenter'>Ads</h2>
+		<p class='tCenter'>Kestrogle does not want to put ads in your face without your consent. However, it would be greatly appreciated if you were to be okay with ads in favor of supporting Kestrogle.<br><br>Supposedly we were able to disable the trackers, though we cannot confirm this. Also, ads do not support Kestrogle unless clicked on. Lastly, if you do not see the ads after clicking, you may have an ad blocker on.<br><br><input type='button' value='I would like Kestrogle to show ads on the support page.' onclick='ads()'></input>
+		</p>
+			<h2 class='tCenter'>Donations</h2>
+			<p class='tCenter'>We are not going to shove donations in your face, however if you would like to donate the form is here.<br>
+			<form action="https://www.paypal.com/donate" method="post" target="_top" class='tCenter'>
+	 		<!-- Identify your business so that you can collect the payments. -->
+			 <input type="hidden" name="business" value="smacandy@hotmail.com">
+			 <!-- Specify details about the contribution -->
+			 <input type="hidden" name="no_recurring" value="0">
+			 <input type="hidden" name="item_name" value="Kestron">
+			 <input type="hidden" name="item_number" value="Kestrogle">
+			 <input type="hidden" name="currency_code" value="USD">
+			 <!-- Display the payment button. -->
+			 <input type="image" name="submit" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="Donate">
+			 <img alt="" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+			</form>
+			<h6 class='tCenter'>*Note: Do not worry about the name on the Donation link.</h6>
+		</p>
+		<script src='footer.js'></script>
+		<!--
+		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4758736745278717"
+     crossorigin="anonymous"></script>
+		-->
+		<script>
+			function ads(){
+				let doIt=confirm("This will add ads to the Support page. Do you wish to continue?");
+				if(doIt){
+					let adScript = document.createElement("script");
+					adScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4758736745278717";
+					adScript.async = true;
+					adScript.crossorigin="anonymous";
+					document.body.appendChild(adScript);
+				}
+			}
+		</script>
+	</body>
+</html>

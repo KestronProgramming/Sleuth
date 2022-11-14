@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Make Kestrogle your Default Search Engine</title>
+		<link rel='stylesheet' href='all.css'>
+		<link rel='stylesheet' href='search.css'>
+		<link rel='icon' href='BarioMagGlass.png'>
+		<style>
+			/* Style the button that is used to open and close the collapsible content */
+			.collapsible {
+			  background-color: rgb(125,125,125);
+			  color: black;
+			  cursor: pointer;
+			  padding: 18px;
+			  width: 100%;
+			  border: none;
+			  text-align: center;
+			  outline: none;
+			}
+			
+			/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+			.active, .collapsible:hover {
+			  background-color: rgb(150,150,150);
+			}
+			
+			/* Style the collapsible content. Note: hidden by default */
+			.content {
+			  padding: 0 18px;
+			  display: none;
+			  overflow: hidden;
+			  background-color: rgb(150,150,150);
+				color:black;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="header">
+			<a href="/"><image src='kestrogle.png' id='logo' /></a><br>
+			<form class='tCenter' action='/search' autocomplete='off'>
+				<input placeholder='Search...' id='q' name='q'> <input type="submit" value="Search">
+			</form>
+		</header><br><br>
+		<h1 class='tCenter'>How to make Kestrogle your default Search Engine</h1>
+		<button type="button" class="collapsible">Chrome</button>
+		<div class="content">
+		  <p>Coming Soon, involves editing Chrome's files.</p>
+		</div>
+		<button type="button" class="collapsible">Edge</button>
+		<div class="content">
+		  <p>
+				<ul>
+					<li>Open the settings menu. (Click the three dots in the top right and then Settings)</li>
+					<li>Type "Search Engine" into the settings search bar.</li>
+					<li>Click Address bar and search</li>
+					<li>Click Manage Search Engines</li>
+					<li>If Kestrogle is in the list, click the three dots next to it and then press "Make Default". You are now done and can skip the other steps.</li>
+					<li>If you don't see Kestrogle, press Add.</li>
+					<li>Type "Kestrogle" as the search engine, "kestrogle.kestron.repl.co" as the Shortcut, and paste the following into the "URL with %s in place of query" field: "https://kestrogle.kestron.repl.co/search?q=%s".</li>
+				</ul>
+			</p>
+		</div>
+		<button type="button" class="collapsible">Firefox</button>
+		<div class="content">
+			Look at the URL/Search bar, and press the 3 dots to pull up the menu. Then click "Add Search Engine".
+		</div>
+		<button type="button" class="collapsible">KaiOs</button>
+		<div class="content">
+			**WIP, INCOMPLETE. DO NOT USE THIS GUIDE YET.<br><br>
+
+			Requires a computer.<br><br>
+			
+			Installing a WebIDE
+			<ul>
+				<li>Download the Android Development SDK (Add later)</li>
+				<li>Download an outdated version of Palemoon (Add later)</li>
+				<li>Go to the Developer settings on your phone (https://i-forget-the-link-will-add-later)</li>
+				<li>Enable ADB and Developer Tools</li>
+			</ul>
+
+			Using the WebIDE
+			<ul>
+				<li>Open the CMD line</li>
+				<li>Make sure the CMD line is in the right folder</li>
+				<li>Type a certain command in (will add later)</li>
+				<li>Open Palemoon</li>
+				<li>Right Click on the grey space above the URL bar.</li>
+				<li>Enable the tools menu.</li>
+				<li>Click tools, and then WebIDE</li>
+				<li>Click Remote Runtime, and then Okay.</li>
+			</ul>
+			
+		  Adding Kestrogle
+			<ul>
+				<li>Connect your WebIDE to your phone</li>
+				<li>Open Device Settings</li>
+				<li>Find the right setting</li>
+				<li>Paste a certain thing in (Add later)</li>
+				<li>You can now unplug your phone and add Kestrogle in the settings app.</li>
+			</ul>
+		</div>
+		<button type="button" class="collapsible">Brave</button>
+		<div class="content">
+		  <p>Coming soon...</p>
+		</div>
+		<button type="button" class="collapsible">Opera</button>
+		<div class="content">
+		  <p>Coming soon...</p>
+		</div>
+		<button type="button" class="collapsible">Safari</button>
+		<div class="content">
+		  <p>Coming soon...</p>
+		</div>
+		<script>
+			var coll = document.getElementsByClassName("collapsible");
+			for (var i = 0; i < coll.length; i++) {
+			  coll[i].addEventListener("click", function() {
+			    this.classList.toggle("active");
+			    var content = this.nextElementSibling;
+			    if (content.style.display === "block") {
+			      content.style.display = "none";
+			    } else {
+			      content.style.display = "block";
+			    }
+			  });
+			}
+		</script>
+	</body>
+</html>
