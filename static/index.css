@@ -1,4 +1,17 @@
 
+:root {
+  --primary-background: #000000;
+  --primary-text: #ffffff;
+  --secondary-background: #333333;
+  --secondary-text: #fffa;
+  --color-safty: #00fa99;
+  --color-warning: #ffff55;
+  --color-danger: #ff0000;
+}
+::selection {
+  background-color: currentColor;
+  color: #101010;
+}
 #logo {
   margin-top: clamp(2rem, 10vw, 10rem);
 }
@@ -12,28 +25,44 @@
 .tCenter{
     text-align:center;
 }
-input {
+input, select {
   font-size: clamp(14px, 1.4vw, 2rem);
 	margin-top: 1rem;
   padding: .4rem;
   padding-bottom: 0;
-  color: #fffa;
+  color: var(--secondary-text);
   border: none;
   border-bottom: 3px solid #ffffff01;
-  background: #fff3;
+  background: var(--secondary-background);
   transition: box-shadow 250ms ease-in, border-bottom 250ms ease-in;
 }
 input[name="q"] {
-  border-bottom: 3px solid #fff3;
-  background: #0000;
+  border-bottom: 3px solid var(--secondary-background);
+  background: #00000000;
 }
-input:focus {
+input:focus, select:focus{
   outline: none;
   border: none;
   border-bottom: 3px solid #ffffff01;
   box-shadow: 0 .15rem 0 #e6cb7c,
               0 .25rem 0 #fc0101,
               0 .35rem 0 #0000ff;
+}
+option {
+  color: var(--primary-text);
+  background: var(--secondary-background);
+}
+#safesearch {
+  font-size: 1rem;
+}
+.safesearch-safe {
+  color: var(--color-safty);
+}
+.safesearch-moderate {
+  color: var(--color-warning);
+}
+.safesearch-off {
+  color: var(--color-danger);
 }
 footer {
     position : absolute;
