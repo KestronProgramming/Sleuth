@@ -21,7 +21,8 @@ function unSafe(lvl, txt) {
 	let blacklist = require("./blacklist.js");
 	if (lvl === "Safe") {//Words
 		for (var i = 0; i < blacklist.words.length; i++) {
-			if (txt.includes(blacklist.words[i])) {
+			var checker=new RegExp(`/\b${blacklist.words[i]}(ing|\b|er|s|es|ed)/i`);
+			if (checker.test(txtCheck)) {
 				removeResult = true;
 			}
 		}
