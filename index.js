@@ -473,8 +473,8 @@ site.get('/images', async (req, res) => {
 	<body>
  		<header class="header">
 				<a href="/"><image src='kestrogle.png' id='logo' /></a><br>
-				<form class='tCenter' action='/search' autocomplete='off'>
-						<input placeholder='Search...' id='q' name='q'> <input type="submit" value="Search">
+				<form class='tCenter' action='/images' autocomplete='off'>
+						<input placeholder='Search...' id='q' name='q' value="${query}"> <input type="submit" value="Search">
 				</form>
 				<a href='search?q=${query}'>All</a>
 		</header><br><br>
