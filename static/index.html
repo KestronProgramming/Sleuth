@@ -15,7 +15,7 @@
 	<body>
 		<img id="logo" class="center" src="kestrogle.png"><h6 class='tCenter'>Can be found at kestrogle.tk and kestrogle.kestron.repl.co</h6><br>
 		<form class='tCenter' action='/search' autocomplete='off'>
-			<input placeholder='Search...' id='q' name='q'> <input type="submit" value="Search"><br><br>
+			<input placeholder='Search...' id='q' name='q'> <input type="button" value="🎙" onclick="getSpeech()"> <input type="submit" value="Search"><br><br>
 			Safesearch: 
 			<select name='safesearch' onchange="safeExplanation()" id='safesearch'>
 				<option class="safesearch-safe">Safe</option>
@@ -46,5 +46,19 @@
 			}
 		</script>
 		<script src='suggest.js'></script>
+		<script src='voice.js'></script>
+		<script>
+			
+			function getSpeech(){
+				listen(function(said){
+					said=said.toLowerCase();
+					said=said.replaceAll(".","");
+					said=said.replaceAll("?","");
+					said=said.replaceAll("!","");
+					said=said.replaceAll(",","");
+					document.getElementById("q").value=said.toLowerCase();
+				});
+			}
+		</script>
 	</body>
 </html>
