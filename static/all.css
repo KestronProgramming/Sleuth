@@ -76,3 +76,9 @@ a:visited{
 a:visited:hover{
     color:rgb(12, 125, 14);
 }
+.eggImg{
+	position:fixed;
+	left:0px;
+	bottom:2.6rem;
+	width:25%;
+}
