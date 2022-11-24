@@ -41,6 +41,6 @@ function isTime(m,d){
 	return date.getMinutes()===m&&date.getDay()===d;
 }
 if(isTime("thanksgiving")){
-	egg=`<img src='turkey.png' class='egg'>`;
+	egg=`<img src='turkey.png' class='eggImg'>`;
 }
 document.body.innerHTML+=egg;
