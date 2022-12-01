@@ -44,3 +44,16 @@ hr {
 .b_attribution {
     display: none;
 }
+#abstract{
+	background-color:rgb(88, 80, 80);
+	float:right;
+	width:30%;
+	padding:15px;
+	margin:5px;
+	position:relative;
+	right:10px;
+}
+#abstract img{
+	width:20%;
+	float:right;
+}
