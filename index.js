@@ -214,7 +214,17 @@ site.get('/search', async (req, res) => {
 				}
 			}
 		}
-
+		let abstractData={};
+		await fetch("https://api.duckduckgo.com/?q="+query+"&format=json&pretty=1&no_redirects=1&no_html=1&skip_disambig=1").then(d=>d.json()).then(d=>{
+			abstractData={
+				txt:d.AbstractText,
+				src:d.AbstractURL,
+				srcName:d.AbstractSource,
+				img:"https://duckduckgo.com"+d.Image,
+				head:d.Heading
+			};
+		});
+		options["abstractData"]=abstractData;
 		ejs.renderFile('./search.ejs', options, {}, function(err, str) {
 			if (err) {
 				res.send(err);
