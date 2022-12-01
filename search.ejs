@@ -15,6 +15,7 @@
             </form>
 						<a href='images?q=<%= query %>'>Images</a>
         </header>
+	<% if(abstractData.txt){ %>
 	<div id='abstract'>
 		<h1><%= abstractData.head %></h1>
 		<img src='<%= abstractData.img %>'>
@@ -23,6 +24,7 @@
 		</p>
 		<a href='<%= abstractData.src %>'><h4><%= abstractData.srcName %></h4></a>
 	</div>
+	<% } %>
         <main class="results">
             <% if (useLoadEngines == "true" || useLoadEngines == "yes") { %>
             <div id="googleResults">
