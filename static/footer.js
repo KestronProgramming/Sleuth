@@ -1,1 +1,1 @@
-document.body.innerHTML += "<footer class='tCenter'><span id='footerContent'><a href='/about'>About Kestrogle</a> <a href='support'>Support Kestrogle</a> WIP, by Kestron and Shipment22. <a href='https://discord.gg/k3yVkrrvez'>Support Discord Server</a></footer>";
+document.body.innerHTML += "<footer class='tCenter'><span id='footerContent'><a href='/about'>About Kestrogle</a> <a href='support'>Support Kestrogle</a> WIP, by Kestron and Shipment22. <a href='https://discord.gg/k3yVkrrvez'>Discord Support Server</a></footer>";
