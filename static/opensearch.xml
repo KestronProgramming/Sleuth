@@ -4,7 +4,7 @@
   <Description>Kestrogle</Description>
   <InputEncoding>UTF-8</InputEncoding>
   <Image width="16" height="16" type="image/x-icon">https://search.kestron.software/favicon.ico</Image>
-  <Url type="text/html" template="https://kestrogle.tk/openSearchRedirect?q={searchTerms}"/>
+  <Url type="text/html" template="https://search.kestron.software/openSearchRedirect?q={searchTerms}"/>
   <Url type="application/x-suggestions+json" template="https://search.kestron.software/suggestions?q={searchTerms}"/>
   <moz:SearchForm>https://search.kestron.software/search</moz:SearchForm>
 </OpenSearchDescription>
