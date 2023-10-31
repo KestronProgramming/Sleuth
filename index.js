@@ -1,8 +1,5 @@
 /**
  By Kestron and Shipment22
-
-
- https://proxy.kestron.repl.co?q=SITETOPROXY
 */
 const fetch = require('@replit/node-fetch');
 const express = require('express');
