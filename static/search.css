@@ -1,14 +1,50 @@
+:root {
+    --centered-clamp: clamp(65ch, 60vw, 70ch);
+}
 body{
-    background-color:black;
-    color:white;
+    background-color: var(--primary-background);
+    color: var(--primary-text);
+}
+body[data-using-sidebar="no"] .results {
+    width: var(--centered-clamp);
+    max-width: 100%;
+    margin-inline: auto;
+}
+hr {
+    color: #fff1;
+    border: solid 1px #fff1;
+    margin-block: 1rem;
+}
+.header {
+    position: sticky;
+    top: 0;
+    background-color: var(--header-background);
+    border-bottom: var(--slight-border);
+    box-shadow: 0 10px 15px #04040422;
+}
+#logo{
+    padding: 1rem;
+    position: absolute;
+}
+.search-form,
+.results-type-nav {
+    width: calc(var(--centered-clamp) - 2rem);
+    margin-inline: auto;
+}
+.search-form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: .5rem;
+}
+.search-form input {
+    margin: 0;
+}
+.results-type-nav {
+    padding-block: .5em;
 }
 .seperator {
     font-size: .6em;
     color: #fff4;
-}
-#logo{
-    float:left;
-    padding: 1rem;
 }
 .result a {
     text-decoration: none;
@@ -18,43 +54,49 @@ body{
     padding: 0;
     font-size: 1.2rem;
     font-weight: normal;
+    color: var(--res-title-color);
 }
 .url{
-    color:#ccc;
+    color: var(--res-url-color);
     word-wrap: break-word;
     font-size: .8rem;
     margin: 0;
     padding: 0;
+}
+.engines-indicator-wrapper {
+    display: flex;
+    align-items: center;
+}
+.engine + .engine {
+    margin-left: .6rem;
 }
 .results {
     margin-top: 3rem;
     margin-inline: 2rem;
     padding: 1rem;
 }
-body[data-using-sidebar="no"] .results {
-    width: clamp(45ch, 60vw, 70ch);
-    max-width: 100%;
-    margin-inline: auto;
-}
-hr {
-    color: #fff1;
-    border: solid 1px #fff1;
-    margin-block: 1rem;
-}
 .b_attribution {
     display: none;
 }
 #abstract{
-	background-color:rgb(88, 80, 80);
-	float:right;
-	width:30%;
-	padding:15px;
-	margin:5px;
-	position:relative;
-	right:10px;
+	float: right;
+    min-width: 30ch;
+	width: 30%;
+    margin: 3.5rem 1rem 10px 10px;
+    max-width: 70ch;
+	padding: 1em;
+	background-color: var(--sidebar-abstract-bg);
+    border-radius: 5px;
+    border: var(--slight-border);
+    box-shadow: 0 0 15px #04040422;
 }
 #abstract img{
-	width:20%;
+	width: clamp(140px, 30%, 300px);
 	float:right;
 	padding:10px;
+}
+@media screen and (max-width: 1300px) {
+    #abstract {
+        display: none;
+    }
 }
