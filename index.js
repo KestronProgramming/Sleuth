@@ -34,7 +34,7 @@ function unSafe(lvl, txt) {
 				txtCheck = txt.split("http://")[1].split("/")[0];
 			}
 			catch (e) {
-				return removeResult;//If it's not a link, then moderate isn't looking for it.
+				return removeResult; //If it's not a link, then moderate isn't looking for it.
 			}
 		}
 		for (var i = 0; i < blacklist.sites.length; i++) {
@@ -51,13 +51,14 @@ async function getResults(engine, query) {
 	let engines = {
 		google: {
 			url: 'https://www.google.com/search?q=',
-			resultsSelector: '.kvH3mc',
-			titleSelector: '.LC20lb',
+			resultsSelector: '.MjjYud',
+			titleSelector: 'h3',
 			getUrl: function(resultEls, i) {
 				return resultEls[i].getElementsByTagName("a")[0].href.replace(/&sa=U[a-z0-9&=_-]+/i, '')
 			},
 			getDescription: function(resultEls, i) {
-				return resultEls[i].getElementsByClassName("VwiC3b yXK7lf MUxGbd yDYNvb lyLwlc lEBKkf")[0].innerHTML.replace(/�/g, '<span class="seperator">∙</span>')
+                return 'test'
+				//return resultEls[i].getElementsByClassName("VwiC3b yXK7lf MUxGbd yDYNvb lyLwlc lEBKkf")[0].innerHTML.replace(/�/g, '<span class="seperator">∙</span>')
 			}
 		},
 		bing: {
@@ -68,9 +69,11 @@ async function getResults(engine, query) {
 			//descriptionSelector: '.b_caption'
 			getDescription: function(resultEls, i) {
 				try {
+                    try { resultEls[i].getElementsByClassName("algoSlug_icon")[0].remove();} catch (e) {}
 					return "" + resultEls[i].getElementsByClassName("b_caption")[0].innerHTML;
 				}
 				catch (e) {
+                    console.error("Caught: ", e);
 					return "No description provided";
 				}
 			}
@@ -93,7 +96,12 @@ async function getResults(engine, query) {
 
 			},
 			getDescription: function(resultEls, i, DOM) {
-				return DOM.window.document.querySelectorAll('.result-snippet')[i].innerHTML
+                try {
+				    return DOM.window.document.querySelectorAll('.result-snippet')[i].innerHTML;
+                } catch (e) {
+                    console.error("Caught: ", e);
+                    return "No description provided";
+                }
 			}
 		}
 	}
@@ -106,7 +114,7 @@ async function getResults(engine, query) {
 		let DOM = new JSDOM(d);
 		let resultEls = DOM.window.document.querySelectorAll(engines[engine].resultsSelector);
 		for (var i = 0; i < resultEls.length; i++) {
-			let title = engines[engine].getTitle ? engines[engine].getTitle(resultEls, i) : resultEls[i].querySelector(engines[engine].titleSelector).textContent,
+			let title = engines[engine].getTitle ? engines[engine].getTitle(resultEls, i) : resultEls[i].querySelectorAll(engines[engine].titleSelector)[1].textContent,
 				url = engines[engine].getUrl ? engines[engine].getUrl(resultEls, i) : resultEls[i].querySelector(engines[engine].urlSelector).href,
 				description = engines[engine].getDescription ? engines[engine].getDescription(resultEls, i, DOM) : resultEls[i].querySelector(engines[engine].descriptionSelector).innerHTML,
 				favi = "";
@@ -122,7 +130,7 @@ async function getResults(engine, query) {
 					favi = "BarioMagGlass.png";
 				}
 			}
-			let resultNumber = i + 1, engineIndecator = `<i class="engine engine-${engine}" title="Number ${i + 1} on ${engine}"><img src='${engine + '.png'}' width='20px'></i>`
+			let resultNumber = i + 1, engineIndecator = `<span class="engine engine-${engine}" title="Number ${i + 1} on ${engine}"><img src='${engine + '.png'}' width="20px" height="20px" ></span>`
 			results.push({ title, url, description, engine, engineIndecator, resultNumber, favi });
 		}
 	});
@@ -180,7 +188,7 @@ site.get('/search', async (req, res) => {
 										// console.log('Yo same bro')
 										let engine = engineResults[j].engine;
 										results[k].engine += `, ${engine}`;
-										results[k].engineIndecator += ` <span class="seperator">∙</span> <i class="engine engine-${engine}" title="Number ${engineResults[j].resultNumber} on ${engine}"><img src='${engines[i] + '.png'}' width='20px'></i>`;
+										results[k].engineIndecator += `<span class="engine engine-${engine}" title="Number ${engineResults[j].resultNumber} on ${engine}"><img src='${engines[i] + '.png'}' width="20px;" height="20px"></span>`;
 										results[k].matchNum++;
 										same = true;
 										break;
