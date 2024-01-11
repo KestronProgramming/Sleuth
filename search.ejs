@@ -10,10 +10,12 @@
     <body data-using-sidebar="<%= useSidebar %>">
         <header class="header">
             <a href="/"><image src='kestrogle.png' id='logo' /></a><br>
-            <form class='tCenter' action='/search' autocomplete='off'>
+            <form class="search-form" action='/search' autocomplete='off'>
                 <input placeholder='Search...' value="<%= query %>" id='q' name='q'> <input type="submit" value="Search">
             </form>
-						<a href='images?q=<%= query %>'>Images</a>
+            <nav class="results-type-nav" aria-label="Results type navigation">
+			    <a href='images?q=<%= query %>'>Images</a>
+            </nav>
         </header>
 	<% if(abstractData.txt){ %>
 	<div id='abstract'>
@@ -43,15 +45,19 @@
                 <% for (let i = 0; i < results.length; i++) { %>
                     <article class="result">
                         <a href="<%= results[i].url %>">
+                            <h2 class="title">
+                                <img src="<%= results[i].favi %>" width='2%'  loading='lazy'> 
+                                <%= results[i].title %>
+                            </h2>
                             <div class="url"><%= results[i].url %></div>
-                            <h2 class="title"><img src="<%= results[i].favi %>" width='2%'  loading='lazy'> <%= results[i].title %></h2>
                         </a>
                         <p class="description"><%- results[i].description %></p>
-                        <i><%- results[i].engineIndecator %> </i>
+                        <div class="engines-indicator-wrapper"><%- results[i].engineIndecator %> </div>
                     </article>
                     <hr>
                     <% } %>
             <% } else { %>
+            <!-- Old segmented results -->
             <h1>Google Results</h1>
                 <% for (let i = 0; i < googleResults.length; i++) { %>
                 <article class="result">
