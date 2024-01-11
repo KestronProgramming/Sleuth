@@ -1,13 +1,3 @@
-
-:root {
-  --primary-background: #000000;
-  --primary-text: #ffffff;
-  --secondary-background: #333333;
-  --secondary-text: #fffa;
-  --color-safty: #00fa99;
-  --color-warning: #ffff55;
-  --color-danger: #ff0000;
-}
 ::selection {
   background-color: currentColor;
   color: #101010;

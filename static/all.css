@@ -1,3 +1,29 @@
+:root {
+    --primary-background: #0b0b0d;
+    --primary-text: #ffffff;
+    --secondary-background: #232325;
+    --secondary-text: #fffa;
+    --trertiary-background: #121214;
+    --color-safty: #00fa99;
+    --color-warning: #ffff55;
+    --color-danger: #ff0000;
+
+    /* More specific colors 
+    * defined here so all colors are in one spot */
+
+    /* Header colors */
+    --header-background: var(--trertiary-background);
+    
+    /* Colors for results */
+    --res-url-color: #a2a3a3;
+    --res-title-color: #68991c;
+
+    /* "Abstract" Sidebar */
+    --sidebar-abstract-bg: var(--secondary-background);
+
+    --slight-border: solid 1px #dddddd0f;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -8,6 +34,10 @@ html, body{
     padding: 0;
     font-family: sans-serif;
     line-height: 1.4em;
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
 }
 input {
     font-size: clamp(14px, 1.4vw, 2rem);
@@ -49,9 +79,6 @@ input[type="button"]:hover,input[type='submit']:hover {
     margin-left: auto;
     margin-right: auto;
     width: 5%;
-}
-img {
-    max-width: 100%;
 }
 footer {
     margin: 0;
