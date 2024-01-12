@@ -51,14 +51,15 @@ async function getResults(engine, query) {
 	let engines = {
 		google: {
 			url: 'https://www.google.com/search?q=',
-			resultsSelector: '.MjjYud',
-			titleSelector: 'h3',
+			resultsSelector: '.N54PNb.BToiNc.cvP2Ce',
+            getTitle(resultEls, i) {
+                return resultEls[i].getElementsByTagName("h3")[0].textContent;
+            },
 			getUrl: function(resultEls, i) {
 				return resultEls[i].getElementsByTagName("a")[0].href.replace(/&sa=U[a-z0-9&=_-]+/i, '')
 			},
 			getDescription: function(resultEls, i) {
-                return 'test'
-				//return resultEls[i].getElementsByClassName("VwiC3b yXK7lf MUxGbd yDYNvb lyLwlc lEBKkf")[0].innerHTML.replace(/�/g, '<span class="seperator">∙</span>')
+				return resultEls[i].querySelector("div.VwiC3b.yXK7lf.lVm3ye.r025kc.hJNv6b.Hdw6tb").innerHTML.replace(/�/g, '<span class="seperator">∙</span>')
 			}
 		},
 		bing: {
@@ -66,7 +67,6 @@ async function getResults(engine, query) {
 			resultsSelector: '.b_algo',
 			titleSelector: 'a',
 			urlSelector: 'a',
-			//descriptionSelector: '.b_caption'
 			getDescription: function(resultEls, i) {
 				try {
                     try { resultEls[i].getElementsByClassName("algoSlug_icon")[0].remove();} catch (e) {}
@@ -79,13 +79,6 @@ async function getResults(engine, query) {
 			}
 		},
 		ddg: {
-			// url: 'https://duckduckgo.com/html/?q=',
-			// resultsSelector: '.links_main.links_deep.result__body',
-			// titleSelector: 'h2',
-			// getUrl(resultEls, i) {
-			// 	return ("https://" + resultEls[i].getElementsByClassName("result__url")[0].textContent).replace(/\s/g, '')
-			// },
-			// descriptionSelector: '.result__snippet'
 			url: 'https://lite.duckduckgo.com/lite/?q=',
 			resultsSelector: '.result-link',
 			getTitle: function(resultEls, i) {
@@ -105,7 +98,8 @@ async function getResults(engine, query) {
 			}
 		}
 	}
-
+    
+    try {
 	await fetch(engines[engine].url + query, {
 		headers: {
 			'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'
@@ -134,6 +128,9 @@ async function getResults(engine, query) {
 			results.push({ title, url, description, engine, engineIndecator, resultNumber, favi });
 		}
 	});
+    } catch(e) {
+        console.log("Caught error getting results from ", engine, ":\n", e);
+    }
 
 	return results;
 }
