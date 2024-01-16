@@ -206,8 +206,10 @@ site.get('/search', async (req, res) => {
 						}
 					} catch (e) { console.log(e); }
 				}
-				results.sort(function(a, b) { return a.resultNum - b.resultNum });
+                // Ordering of the sorts matters here, matchNum is first so that it gets overridden by resultNum otherwise results are just un-usable
+                // In the future more sorting could be done here, e.g. (probably opt-in) you could have device-based results, with no data being sent out
 				results.sort(function(a, b) { return b.matchNum - a.matchNum });
+				results.sort(function(a, b) { return a.resultNum - b.resultNum });
 				options['results'] = results;
 			} else {
 				for (var i in engines) {
