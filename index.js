@@ -92,7 +92,7 @@ async function getResults(engine, query) {
                 try {
 				    return DOM.window.document.querySelectorAll('.result-snippet')[i].innerHTML;
                 } catch (e) {
-                    console.error("Caught: ", e);
+                    console.error("Caught while getting DuckDuckGo descriptions: ", e);
                     return "No description provided";
                 }
 			}
@@ -336,49 +336,47 @@ site.get('/get', async (req, res) => {
 	}
 	res.send(page);
 });
+async function getSuggestions(query) {
+    const engines = [
+        {
+            name: "DuckDuckGo",
+            url: "https://duckduckgo.com/ac/?q=" + query + "&type=list"
+        },
+        {
+            name: "Google",
+            url: "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=" + query
+        }
+	];
+    let suggestions = [], suggestedBy = [];
+    for (let i in engines) {
+        const engine = engines[i].name;
+        await fetch(engines[i].url)
+        .then(d => d.json())
+        .then(suggestionData => {
+            for (let suggestion of suggestionData[1]) {
+                if (suggestion != query) {
+                    if (!suggestions.includes(suggestion)) {
+                        suggestions.push(suggestion);
+                        suggestedBy.push(engine);
+                    } else {
+                        let index = suggestions.indexOf(suggestion);
+                        suggestedBy[index] += ", "+engine;
+                    }
+                }
+            }
+        });
+    }
+    return { query, suggestions, suggestedBy };
+}
 site.get('/suggestions', async (req, res) => {
-	let query = req.query.q
-
-	let suggestionUrls = [
-		'https://duckduckgo.com/ac/?q=' + query + '&type=list',
-		'http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=' + query
-	]
-
-	let engineNames = [
-		'DuckDuckGo',
-		'Google'
-	]
-
-	let suggestions = [
-		query,
-		[]
-	]
-
-	let suggestedBy = []
-
-	for (let i in suggestionUrls) {
-		await fetch(suggestionUrls[i])
-			.then(d => d.json())
-			.then(d => {
-				for (let j in d[1]) {
-					if (d[1][j] != query) {
-						if (!suggestions[1].includes(d[1][j])) {
-							suggestions[1].push(d[1][j])
-							suggestedBy.push(' (' + engineNames[i] + ')')
-						} else {
-							let index = suggestions[1].indexOf(d[1][j])
-							suggestedBy[index] = suggestedBy[index].slice(0, -1) + ', ' + engineNames[i] + ')'
-						}
-					}
-				}
-			})
-	}
-
-	for (let i in suggestions[1]) {
-		suggestions[1][i] += suggestedBy[i]
-	}
-
-	res.send(suggestions)
+    const query = req.query.q;
+    let { suggestions, suggestedBy } = await getSuggestions(query);
+    suggestions = suggestions.map(s => {
+        //const longest = suggestions.sort((a,b)=>b.length-a.length)[0],
+            //space = " ".repeat(longest.length - s.length);
+        return s+" - "+suggestedBy[suggestions.indexOf(s)];
+    });
+    res.send([query, suggestions])
 })
 site.get('/openSearchRedirect', async (req, res) => {
 	// If the the parameter qre (Query Remove Engines) is set remove the names of the engines from the query, and redirects.
