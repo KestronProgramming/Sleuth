@@ -19,6 +19,7 @@
         </header>
 	<% if(abstractData.txt){ %>
 	<div id='abstract'>
+        <button id="close-abstract" class="button" onclick="document.getElementById('abstract').style.display = 'none';document.getElementById('open-abstract').style.display = 'block'">Close Abstract</button>
 		<h1><%= abstractData.head %></h1>
 		<img src='<%= abstractData.img %>'>
 		<p>
@@ -42,11 +43,15 @@
             <div id='ddgLoading' class='center'>Loading...</div>
             </div>
             <% } else if(useCombinedResults == "true" || useCombinedResults == "yes") { %>
+                <% if (abstractData.txt) { %>
+                    <!-- Kinda a temporary fix, should be re-thought later. - Shipment22 -->
+                    <button id="open-abstract" class="button" onclick="document.getElementById('abstract').style.display = 'block';this.style.display='none'" style="margin-block: -1.5rem 2.2rem;">Open Abstract</button>
+                <% } %>
                 <% for (let i = 0; i < results.length; i++) { %>
                     <article class="result">
                         <a href="<%= results[i].url %>">
                             <h2 class="title">
-                                <img src="<%= results[i].favi %>" width='2%'  loading='lazy'> 
+                                <img src="<%= results[i].favi %>" class="result-favicon" width="24px" height="24px" loading="lazy">
                                 <%= results[i].title %>
                             </h2>
                             <div class="url"><%= results[i].url %></div>
