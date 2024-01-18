@@ -70,7 +70,7 @@ async function getResults(engine, query) {
 			getDescription: function(resultEls, i) {
 				try {
                     try { resultEls[i].getElementsByClassName("algoSlug_icon")[0].remove();} catch (e) {}
-					return "" + resultEls[i].getElementsByClassName("b_caption")[0].innerHTML;
+					return "" + resultEls[i].getElementsByClassName("b_caption")[0].innerHTML.trim();
 				}
 				catch (e) {
                     console.error("Caught: ", e);
@@ -85,12 +85,12 @@ async function getResults(engine, query) {
 				return resultEls[i].textContent
 			},
 			getUrl: function(resultEls, i) {
-				return (resultEls[i].href.slice(25)).slice(0, -69)
-
+				return decodeURI(resultEls[i].href.slice(25, -69))
 			},
 			getDescription: function(resultEls, i, DOM) {
                 try {
-				    return DOM.window.document.querySelectorAll('.result-snippet')[i].innerHTML;
+				    //return DOM.window.document.querySelectorAll('.result-snippet')[i].innerHTML;
+                    return resultEls[i].parentElement.parentElement.nextElementSibling.getElementsByClassName("result-snippet")[0].innerHTML.trim();
                 } catch (e) {
                     console.error("Caught while getting DuckDuckGo descriptions: ", e);
                     return "No description provided";
@@ -175,7 +175,7 @@ site.get('/search', async (req, res) => {
 								// console.log(engineResults[j].engine)
 								for (let k in results) {
 									results[k].matchNum = results[k].matchNum || 0;
-									if (results[k].title == engineResults[j].title || results[k].url.replace(/\/$/, '') == engineResults[j].url.replace(/\/$/, '')) {
+									if (results[k].url.replace(/\/$/, '') == engineResults[j].url.replace(/\/$/, '')) {
 										if (results[k].resultNum) {
 											results[k].resultNum += engineResults[j].resultNumber;
 										}
@@ -210,7 +210,7 @@ site.get('/search', async (req, res) => {
                 // In the future more sorting could be done here, e.g. (probably opt-in) you could have device-based results, with no data being sent out
 				results.sort(function(a, b) { return b.matchNum - a.matchNum });
 				results.sort(function(a, b) { return a.resultNum - b.resultNum });
-				options['results'] = results;
+				options.results = results;
 			} else {
 				for (var i in engines) {
 					options[engines[i] + 'Results'] = results;
