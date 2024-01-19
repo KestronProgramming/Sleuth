@@ -22,6 +22,7 @@ hr {
     border-bottom: var(--slight-border);
     box-shadow: 0 10px 15px #04040422;
     padding-inline: 1rem;
+    z-index: 100;
 }
 #logo {
     padding-top: .5rem;
@@ -52,6 +53,61 @@ hr {
 .seperator {
     font-size: .6em;
     color: #fff4;
+}
+#search-suggestions {
+    max-width: min(600px, 24%);
+    columns: 12em 3;
+    font-size: clamp(.8em, 2.5vw, 1em);
+    padding: 0;
+    list-style-type: none;
+}
+#search-suggestions li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: .4rem;
+    line-height: 1.8;
+}
+#search-suggestions .engine {
+    margin-left: 0;
+    opacity: .9;
+    display: inline-block;
+    width: clamp(.9em, 3vw, 1em);
+    height: clamp(.9em, 3vw, 1em);
+}
+#search-suggestions .engine+.engine {
+    margin-left: -1.5em;
+    transform: translate(.3em, .35em) scale(.9);
+}
+/* For mobile */
+@media screen and (max-width: 1299px) {
+    #search-suggestions {
+        width: calc(var(--centered-clamp) - 2rem);
+        max-width: calc(100% - 2rem);
+        margin-inline: auto;
+        min-height: 120px;
+        height: 22vh;
+        max-height: 200px;
+        overflow-x: auto;
+    }
+    #search-suggestions li {
+        padding-block: .5em;
+        border-bottom: var(--slight-border);
+    }
+    #search-suggestions .engine {
+        grid-auto-flow: row;
+        gap: 0;
+        grid-template-columns: none;
+    }
+}
+/* For desktop */
+@media screen and (min-width: 1300px) {
+    #search-suggestions {
+        position: sticky;
+        top: 120px;
+        float: left;
+        margin-top: 3rem;
+        padding-inline: 2rem;
+    }
 }
 .result a {
     text-decoration: none;

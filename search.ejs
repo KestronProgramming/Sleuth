@@ -17,6 +17,26 @@
 			    <a href='images?q=<%= query %>'>Images</a>
             </nav>
         </header>
+        <% if (typeof suggestions === 'object' && suggestions.suggestions.length > 0) { %>
+            <ul id="search-suggestions">
+                <h2>Suggestions</h2>
+                <% for (let i = 0; i < suggestions.suggestions.length; i++) { %>
+                    <li>
+                        <div class="suggestions-engines-indicator-wrapper">
+                            <% for (let engine of suggestions.suggestedBy[i].split(", ")) { %>
+                                <% const e = engine.toLowerCase().replace("duckduckgo", "ddg") %>
+                                <span class="engine engine-<%= e %>" title="Suggestion #<%= i+1 %> was suggested by <%= engine %>">
+                                    <img src="/<%= e %>.png" width="20px" height="20px" style="position: relative; top: .3em">
+                                </span>
+                            <% } %>
+                        </div>
+                        <a href="/search?q=<%= suggestions.suggestions[i] %>" title="<%= suggestions.suggestions[i] %> - Kestrogle">
+                            <%= suggestions.suggestions[i] %>
+                        </a>
+                    </li>
+                <% } %>
+            </ul>
+        <% } %>
 	<% if(abstractData.txt){ %>
 	<div id='abstract'>
         <button id="close-abstract" class="button" onclick="document.getElementById('abstract').style.display = 'none';document.getElementById('open-abstract').style.display = 'block'">Close Abstract</button>
@@ -33,7 +53,7 @@
             <div id="googleResults">
             <h1 class='tCenter'>Google Results</h1>
             <span id='googleLoading' class='center'>Loading...</span>
-            </div>
+</div>
             <div id="bingResults">
             <h1 class='tCenter'>Bing Results</h1>
             <span id='bingLoading' class='center'>Loading...</span>
