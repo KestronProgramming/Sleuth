@@ -218,6 +218,8 @@ site.get('/search', async (req, res) => {
 				}
 			}
 		}
+        const suggestions = await getSuggestions(query);
+        options.suggestions = suggestions;
 		let abstractData={};
 		await fetch("https://api.duckduckgo.com/?q="+query+"&format=json&pretty=1&no_redirects=1&no_html=1&skip_disambig=1").then(d=>d.json()).then(d=>{
 			abstractData={
@@ -410,7 +412,7 @@ site.get('/images', async (req, res) => {
 	let Results = [];
 	await fetch("https://google.com/search?tbm=isch&query=" + query).then(d => d.text()).then(d => {
 		let googleImages = new JSDOM(d);
-		let results = googleImages.window.document.getElementsByClassName('e3goi');
+        let results = googleImages.window.document.getElementsByClassName('e3goi');
 		let urls = [];
 		let imgs = [];
 		let titles = [];
