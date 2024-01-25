@@ -125,10 +125,12 @@ hr {
 }
 .url{
     color: var(--res-url-color);
-    word-wrap: break-word;
     font-size: .8rem;
     margin: 0;
     padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .engines-indicator-wrapper {
     display: flex;
