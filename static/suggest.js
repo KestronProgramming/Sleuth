@@ -5,7 +5,7 @@ function suggest(){
 		return;
 	}
 	lastQ=query;
-	fetch("https://kestrogle.tk/suggestions?q="+query).then(d=>d.text()).then(d=>{
+	fetch("https://Sleuth.tk/suggestions?q="+query).then(d=>d.text()).then(d=>{
 		let res=JSON.parse(d);
 		console.log(res);
 	});

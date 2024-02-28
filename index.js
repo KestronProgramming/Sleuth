@@ -1,7 +1,6 @@
 /**
  By Kestron and Shipment22
 */
-const fetch = require('@replit/node-fetch');
 const express = require('express');
 const { JSDOM } = require('jsdom');
 const ejs = require('ejs');
@@ -403,9 +402,6 @@ site.get('/about', async (req, res) => {
 site.get('/makeDefault', async (req, res) => {
 	res.send(await fs.readFileSync('static/makeDefault.html', 'utf-8'));
 });
-site.get('/support', async (req, res) => {
-	res.send(await fs.readFileSync('static/support.html', 'utf-8'));
-});
 site.get('/blocked', async (req, res) => {
 	res.send("<script>window.top.location.replace('/');</script>");
 });/*
@@ -485,14 +481,14 @@ site.get('/images', async (req, res) => {
 <!DOCTYPE html>
 <html>
 	<head>
- 		<title>${query} - Kestrogle Images</title>
+ 		<title>${query} - Sleuth Images</title>
 	 	<link rel='stylesheet' href='all.css'>
 	 	<link rel='stylesheet' href='search.css'>
 	 	<link rel='stylesheet' href='imageSearch.css'>
  	</head>
 	<body>
  		<header class="header">
-				<a href="/"><image src='kestrogle.png' id='logo' /></a><br>
+				<a href="/"><image src='Sleuth.png' id='logo' /></a><br>
 				<form class='tCenter' action='/images' autocomplete='off'>
 						<input placeholder='Search...' id='q' name='q' value="${query}"> <input type="submit" value="Search">
 				</form>
@@ -504,4 +500,4 @@ site.get('/images', async (req, res) => {
  `);
 });*/
 
-site.use('/favicon.ico', express.static('static/BarioMagGlass.png'))
+site.use('/favicon.ico', express.static('static/favicon.jpg'));

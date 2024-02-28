@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
 	<head>
-    <title><%= query %> - Kestrogle</title>
+    <title><%= query %> - Sleuth</title>
     <link rel='stylesheet' href='all.css'>
     <link rel='stylesheet' href='search.css'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="search" type="application/opensearchdescription+xml" title="Kestrogle" href="opensearch.xml" />
+	<link rel="search" type="application/opensearchdescription+xml" title="Sleuth" href="opensearch.xml" />
  	</head>
     <body data-using-sidebar="<%= useSidebar %>">
         <header class="header">
-            <a href="/"><image src='kestrogle.png' id='logo' /></a><br>
+            <a href="/"><image src='Sleuth.png' id='logo' /></a><br><br>
+            <p class="tagline"><span class="cyan">S</span>earch <span class="cyan">L</span>everaging <span class="cyan">E</span>xternal <span class="cyan">U</span>nified <span class="cyan">T</span>ools for <span class="cyan">H</span>unting</p>
             <form class="search-form" action='/search' autocomplete='off'>
                 <input placeholder='Search...' value="<%= query %>" id='q' name='q'> <input type="submit" value="Search">
             </form>
@@ -30,7 +31,7 @@
                                 </span>
                             <% } %>
                         </div>
-                        <a href="/search?q=<%= suggestions.suggestions[i] %>" title="<%= suggestions.suggestions[i] %> - Kestrogle">
+                        <a href="/search?q=<%= suggestions.suggestions[i] %>" title="<%= suggestions.suggestions[i] %> - Sleuth">
                             <%= suggestions.suggestions[i] %>
                         </a>
                     </li>
