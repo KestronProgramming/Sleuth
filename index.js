@@ -80,8 +80,12 @@ async function getResults(engine, query) {
 		},
 		ddg: {
 			url: 'https://lite.duckduckgo.com/lite/?q=',
-			resultsSelector: '.result-link',
+			resultsSelector: 'td .result-link:first-child',
 			getTitle: function(resultEls, i) {
+                if (resultEls[i].parentElement.parentElement.classList.contains("result-sponsored")) {
+                    console.log("Sponsored DDG result, returning 'bad result' and moving on");
+                    return "bad result";
+                }
 				return resultEls[i].textContent
 			},
 			getUrl: function(resultEls, i) {
@@ -112,6 +116,8 @@ async function getResults(engine, query) {
 				url = engines[engine].getUrl ? engines[engine].getUrl(resultEls, i) : resultEls[i].querySelector(engines[engine].urlSelector).href,
 				description = engines[engine].getDescription ? engines[engine].getDescription(resultEls, i, DOM) : resultEls[i].querySelector(engines[engine].descriptionSelector).innerHTML,
 				favi = "";
+            // If the result is considered bad by the title, url or description getting function, just move on
+            if (title === "bad result" || url === "bad result" || description === "bad result") continue;
 			url = decodeURIComponent(url);
 			try {
 				favi = "https://external-content.duckduckgo.com/ip3/" + url.split('https://')[1].split("/")[0] + ".ico";
