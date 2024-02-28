@@ -408,7 +408,7 @@ site.get('/support', async (req, res) => {
 });
 site.get('/blocked', async (req, res) => {
 	res.send("<script>window.top.location.replace('/');</script>");
-});
+});/*
 site.get('/images', async (req, res) => {
 	let query = req.query.q;
 	if (query === undefined || query === null || query.length === 0) {
@@ -502,6 +502,6 @@ site.get('/images', async (req, res) => {
  	</body>
 </html>
  `);
-});
+});*/
 
 site.use('/favicon.ico', express.static('static/BarioMagGlass.png'))
