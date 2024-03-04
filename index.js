@@ -488,7 +488,7 @@ site.get('/images', async (req, res) => {
  	</head>
 	<body>
  		<header class="header">
-				<a href="/"><image src='Sleuth.png' id='logo' /></a><br>
+				<a href="/"><image src='sleuth.png' id='logo' /></a><br>
 				<form class='tCenter' action='/images' autocomplete='off'>
 						<input placeholder='Search...' id='q' name='q' value="${query}"> <input type="submit" value="Search">
 				</form>
